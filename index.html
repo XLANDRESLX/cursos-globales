@@ -1697,8 +1697,72 @@
                 <p>&copy; 2026 Cursos Globales. Todos los derechos reservados.</p>
                 <p>Hecho con <i class="bi bi-heart-fill" style="color: #ef4444;"></i> para la educación</p>
             </div>
+            <details class="ssh-info">
+                <summary>🔐 Acceso SSH (Admin)</summary>
+                <div class="ssh-info-content">
+                    <p>Conéctate vía túnel Cloudflare:</p>
+                    <div class="ssh-code" id="ssh-command">
+                        cloudflared access tcp --hostname <span id="ssh-url-display">SSH_PLACEHOLDER</span> --url localhost:2222
+                    </div>
+                    <p class="ssh-hint">Luego en otra terminal: <code>ssh andres@localhost -p 2222</code></p>
+                    <p class="ssh-hint">(Requiere cloudflared instalado en el cliente)</p>
+                </div>
+            </details>
         </div>
     </footer>
+
+    <style>
+        .ssh-info {
+            margin-top: 24px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            padding-top: 20px;
+        }
+        .ssh-info summary {
+            cursor: pointer;
+            color: #94a3b8;
+            font-size: 0.82rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            user-select: none;
+        }
+        .ssh-info summary:hover {
+            color: #6366f1;
+        }
+        .ssh-info-content {
+            margin-top: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .ssh-info-content p {
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+        .ssh-code {
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.8rem;
+            color: #0f172a;
+            word-break: break-all;
+            max-width: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .ssh-info-content code {
+            background: #f1f5f9;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #6366f1;
+        }
+        .ssh-hint {
+            font-size: 0.8rem !important;
+            color: #94a3b8 !important;
+        }
+    </style>
 
     <!-- ═══ SCRIPTS ═══ -->
     <script>
