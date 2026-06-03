@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cursos Globales - Academia Digital</title>
+    <title>Cursos Globales — Academia Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         * {
             margin: 0;
@@ -11,295 +15,1829 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #1a1a2e;
-            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #0f172a;
+            background: #f8fafc;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        /* Header / Hero */
-        .hero {
-            padding: 120px 0 80px;
-            text-align: center;
-            color: #fff;
+        /* ─── NAVBAR ─── */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all 0.4s ease;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            padding: 10px 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
             font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #475569;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #6366f1;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 8px 24px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            color: #fff !important;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s !important;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #0f172a;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 120px 0 80px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #f0fdfa 100%);
+        }
+
+        .hero-grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .hero-shapes {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .hero-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(6, 182, 212, 0.08));
+            animation: floatShape 20s infinite ease-in-out;
+        }
+
+        .hero-shape:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .hero-shape:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            bottom: -50px;
+            left: -80px;
+            animation-delay: -7s;
+        }
+
+        .hero-shape:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 60%;
+            animation-delay: -14s;
+        }
+
+        @keyframes floatShape {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.1));
+            color: #6366f1;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #06b6d4, #6366f1);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
         }
 
         .hero p {
-            font-size: 1.3rem;
-            color: #b8b8d4;
-            max-width: 700px;
-            margin: 0 auto 40px;
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto 36px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .btn-academy {
-            display: inline-block;
-            padding: 18px 50px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #fff;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
             border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
             cursor: pointer;
             text-decoration: none;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn-academy:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
-        }
-
-        .btn-academy i {
-            margin-right: 10px;
-        }
-
-        /* Features */
-        .features {
-            padding: 80px 0;
-        }
-
-        .features h2 {
-            text-align: center;
-            font-size: 2.2rem;
+        .btn-academy.primary {
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            background-size: 150% 150%;
             color: #fff;
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-academy.primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 14px 40px rgba(99, 102, 241, 0.4);
+            background-position: right center;
+        }
+
+        .btn-academy.primary:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .btn-academy.primary::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 30%, rgba(255, 255, 255, 0.15) 50%, transparent 70%);
+            background-size: 200% 100%;
+            animation: btnShine 3s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes btnShine {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .btn-academy.secondary {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            color: #0f172a;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        }
+
+        .btn-academy.secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        /* ─── SCROLL REVEAL ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.85);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ─── SECTION HEADERS ─── */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
             margin-bottom: 60px;
         }
 
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: #64748b;
+            font-size: 1.1rem;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 50px;
+            background: rgba(99, 102, 241, 0.08);
+            color: #6366f1;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        /* ─── STATS ─── */
+        .stats {
+            padding: 60px 0;
+            background: #fff;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+
+        /* ─── FEATURES / WHY US ─── */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #fff;
+            padding: 40px 32px;
             border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: transform 0.3s, border-color 0.3s;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: #667eea;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+            border-color: transparent;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
         }
 
         .feature-icon {
-            font-size: 2.5rem;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            font-size: 1.4rem;
             margin-bottom: 20px;
-            display: block;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.1));
+            color: #6366f1;
         }
 
         .feature-card h3 {
-            font-size: 1.3rem;
-            color: #fff;
-            margin-bottom: 15px;
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+            color: #0f172a;
         }
 
         .feature-card p {
-            color: #b8b8d4;
+            color: #64748b;
             font-size: 0.95rem;
+            line-height: 1.7;
         }
 
-        /* Courses section */
+        /* ─── COURSES ─── */
         .courses {
-            padding: 80px 0;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 30px;
-            margin: 0 20px;
+            background: #fff;
         }
 
-        .courses h2 {
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 24px;
+        }
+
+        .course-card {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+            border-color: transparent;
+        }
+
+        .course-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .course-card h4 {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+
+        .course-card p {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .course-meta span {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .course-level {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .course-level.beginner { background: rgba(34, 197, 94, 0.1); color: #16a34a; }
+        .course-level.intermediate { background: rgba(234, 179, 8, 0.1); color: #ca8a04; }
+        .course-level.advanced { background: rgba(239, 68, 68, 0.1); color: #dc2626; }
+
+        /* ─── PRICING ─── */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            align-items: start;
+        }
+
+        .pricing-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 40px 32px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
             text-align: center;
-            font-size: 2.2rem;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+        }
+
+        .pricing-card.popular {
+            border-color: #6366f1;
+            box-shadow: 0 8px 40px rgba(99, 102, 241, 0.1);
+            transform: scale(1.03);
+        }
+
+        .pricing-card.popular:hover {
+            transform: scale(1.03) translateY(-6px);
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
             color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             margin-bottom: 20px;
         }
 
-        .courses > p {
-            text-align: center;
-            color: #b8b8d4;
-            margin-bottom: 50px;
-            font-size: 1.1rem;
+        .pricing-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
         }
 
-        .course-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            padding: 0 20px;
+        .pricing-card .pricing-desc {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 24px;
         }
 
-        .course-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: border-color 0.3s;
+        .pricing-amount {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 4px;
         }
 
-        .course-item:hover {
-            border-color: rgba(102, 126, 234, 0.4);
+        .pricing-amount span {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #94a3b8;
         }
 
-        .course-item h4 {
-            color: #fff;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
+        .pricing-period {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 28px;
         }
 
-        .course-item p {
-            color: #b8b8d4;
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            color: #475569;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: #16a34a;
+            font-weight: 700;
             font-size: 0.9rem;
         }
 
-        /* CTA Section */
-        .cta {
-            padding: 100px 0;
+        .pricing-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 14px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .pricing-btn.primary {
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            color: #fff;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2);
+        }
+
+        .pricing-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(99, 102, 241, 0.3);
+        }
+
+        .pricing-btn.outline {
+            background: transparent;
+            color: #6366f1;
+            border-color: rgba(99, 102, 241, 0.2);
+        }
+
+        .pricing-btn.outline:hover {
+            background: rgba(99, 102, 241, 0.04);
+            border-color: #6366f1;
+        }
+
+        /* ─── TESTIMONIALS ─── */
+        .testimonials {
+            background: #fff;
+        }
+
+        .testimonial-carousel {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-slide {
             text-align: center;
+            padding: 20px;
+            display: none;
+            animation: fadeSlide 0.6s ease;
+        }
+
+        .testimonial-slide.active {
+            display: block;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .testimonial-stars {
+            color: #f59e0b;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+        }
+
+        .testimonial-text {
+            font-size: 1.15rem;
+            color: #334155;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-info h4 {
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+        }
+
+        .testimonial-info span {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: #6366f1;
+            width: 32px;
+            border-radius: 5px;
+        }
+
+        /* ─── TEAM ─── */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .team-card {
+            text-align: center;
+            padding: 32px 20px;
+            background: #fff;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.4s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .team-card h4 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .team-card .team-role {
+            color: #6366f1;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .team-card p {
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        /* ─── FAQ ─── */
+        .faq-list {
+            max-width: 740px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #fff;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0f172a;
+            text-align: left;
+            transition: color 0.3s;
+        }
+
+        .faq-question:hover {
+            color: #6366f1;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+            font-size: 1.1rem;
+            color: #94a3b8;
+        }
+
+        .faq-item.open .faq-question i {
+            transform: rotate(180deg);
+            color: #6366f1;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 24px;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding: 0 24px 20px;
+        }
+
+        .faq-answer p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ─── BLOG ─── */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .blog-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.4s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+        }
+
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(135deg, #e0e7ff, #cffafe);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(99, 102, 241, 0.3);
+        }
+
+        .blog-body {
+            padding: 24px;
+        }
+
+        .blog-date {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+
+        .blog-body h4 {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+
+        .blog-body p {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .blog-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #6366f1;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 12px;
+            transition: gap 0.3s;
+        }
+
+        .blog-link:hover {
+            gap: 10px;
+        }
+
+        /* ─── CTA ─── */
+        .cta {
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            border-radius: 30px;
+            margin: 0 24px;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(255,255,255,0.08) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .cta h2 {
             font-size: 2.5rem;
             color: #fff;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
+            position: relative;
         }
 
         .cta p {
-            color: #b8b8d4;
+            color: rgba(255, 255, 255, 0.85);
             font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 32px;
+            position: relative;
+        }
+
+        .cta .btn-academy.primary {
+            background: #fff;
+            color: #6366f1;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta .btn-academy.primary::after {
+            display: none;
+        }
+
+        .cta .btn-academy.primary:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            padding: 60px 0 30px;
+            background: #fff;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
             margin-bottom: 40px;
         }
 
-        /* Footer */
-        footer {
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .footer-brand .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 12px;
         }
 
-        footer p {
-            color: #6c6c8a;
+        .footer-brand p {
+            color: #64748b;
             font-size: 0.9rem;
+            max-width: 280px;
+            line-height: 1.7;
         }
 
-        /* Responsive */
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .footer-col h5 {
+            font-size: 0.9rem;
+            color: #0f172a;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .footer-col a {
+            display: block;
+            color: #64748b;
+            font-size: 0.9rem;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: #6366f1;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-bottom p {
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 80px 32px 32px;
+                gap: 24px;
+                transition: right 0.4s ease;
+                box-shadow: -10px 0 40px rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
 
             .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero {
-                padding: 80px 0 60px;
-            }
-
-            .btn-academy {
-                padding: 15px 35px;
                 font-size: 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-number {
+                font-size: 2.2rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .cta h2 {
+                font-size: 1.8rem;
+            }
+
+            .pricing-card.popular {
+                transform: none;
+            }
+
+            .pricing-card.popular:hover {
+                transform: translateY(-6px);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta {
+                padding: 50px 24px;
+                margin: 0 16px;
+            }
+
+            .course-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <section class="hero">
+
+    <!-- ═══ NAVBAR ═══ -->
+    <nav class="navbar" id="navbar">
         <div class="container">
-            <h1>Cursos Globales</h1>
-            <p>Transforma tu futuro con nuestros cursos digitales. Aprende desde cualquier lugar, a tu ritmo, con profesionales de clase mundial.</p>
-            <a id="academy-link" href="https://parker-names-debate-give.trycloudflare.com" class="btn-academy">
-                🚀 Ir a la Academia
-            </a>
+            <a href="#" class="logo">CG</a>
+            <button class="hamburger" id="menuToggle" aria-label="Menú">
+                <i class="bi bi-list"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#cursos">Cursos</a></li>
+                <li><a href="#precios">Planes</a></li>
+                <li><a href="#testimonios">Testimonios</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#academia" class="nav-cta">Ir a la Academia</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero" id="inicio">
+        <div class="hero-grid-bg"></div>
+        <div class="hero-shapes">
+            <div class="hero-shape"></div>
+            <div class="hero-shape"></div>
+            <div class="hero-shape"></div>
+        </div>
+        <div class="hero-content container">
+            <div class="hero-badge">🌟 Educación digital sin límites</div>
+            <h1>
+                Aprende con<br>
+                <span class="gradient-text">Cursos Globales</span>
+            </h1>
+            <p>Transforma tu carrera con los mejores cursos digitales. Accede desde cualquier lugar, estudia a tu ritmo y obtén certificaciones reconocidas.</p>
+            <div class="hero-buttons">
+                <a id="academy-link" href="REEMPLAZAR_URL" target="_blank" rel="noopener noreferrer" class="btn-academy primary">
+                    🚀 Ir a la Academia
+                </a>
+                <a href="#cursos" class="btn-academy secondary">
+                    Explorar Cursos
+                </a>
+            </div>
         </div>
     </section>
 
-    <section class="features">
+    <!-- ═══ STATS ═══ -->
+    <section class="stats">
         <div class="container">
-            <h2>¿Por qué elegirnos?</h2>
+            <div class="stats-grid">
+                <div class="stat-item reveal">
+                    <div class="stat-number" data-count="500">0</div>
+                    <div class="stat-label">Estudiantes Activos</div>
+                </div>
+                <div class="stat-item reveal">
+                    <div class="stat-number" data-count="40">0</div>
+                    <div class="stat-label">Cursos Disponibles</div>
+                </div>
+                <div class="stat-item reveal">
+                    <div class="stat-number" data-count="12">0</div>
+                    <div class="stat-label">Instructores Expertos</div>
+                </div>
+                <div class="stat-item reveal">
+                    <div class="stat-number" data-count="95">0</div>
+                    <div class="stat-label">% Satisfacción</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FEATURES ═══ -->
+    <section class="section" id="caracteristicas">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">¿Por qué nosotros?</span>
+                <h2>Todo lo que necesitas para crecer</h2>
+                <p>Una plataforma diseñada para impulsar tu desarrollo profesional con recursos de primer nivel.</p>
+            </div>
             <div class="features-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">📚</span>
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="bi bi-play-circle"></i></div>
                     <h3>Aprendizaje Flexible</h3>
-                    <p>Accede a los cursos 24/7 desde cualquier dispositivo. Estudia a tu propio ritmo sin horarios fijos.</p>
+                    <p>Accede 24/7 desde cualquier dispositivo. Avanza a tu ritmo con clases grabadas y en vivo.</p>
                 </div>
-                <div class="feature-card">
-                    <span class="feature-icon">👨‍🏫</span>
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="bi bi-people"></i></div>
                     <h3>Instructores Expertos</h3>
-                    <p>Aprende de profesionales con años de experiencia en la industria. Contenido actualizado y relevante.</p>
+                    <p>Profesionales con años de experiencia en la industria. Mentoría personalizada y soporte continuo.</p>
                 </div>
-                <div class="feature-card">
-                    <span class="feature-icon">🎓</span>
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="bi bi-patch-check"></i></div>
                     <h3>Certificación Digital</h3>
-                    <p>Obtén certificados al completar tus cursos. Respaldados por nuestra plataforma educativa.</p>
+                    <p>Certificados avalados por la industria al completar cada curso. Impulsa tu currículum.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="bi bi-globe2"></i></div>
+                    <h3>Comunidad Global</h3>
+                    <p>Conecta con estudiantes de todo el mundo. Foros, grupos de estudio y networking.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="courses">
+    <!-- ═══ COURSES ═══ -->
+    <section class="section courses" id="cursos">
         <div class="container">
-            <h2>Cursos Destacados</h2>
-            <p>Explora nuestra oferta educativa y encuentra el curso perfecto para ti</p>
-            <div class="course-list">
-                <div class="course-item">
+            <div class="section-header reveal">
+                <span class="section-tag">Aprende hoy</span>
+                <h2>Cursos Destacados</h2>
+                <p>Selección de los cursos más populares con contenido actualizado y práctico.</p>
+            </div>
+            <div class="course-grid">
+                <div class="course-card reveal">
+                    <span class="course-level beginner">Principiante</span>
+                    <span class="course-icon">🌐</span>
                     <h4>Desarrollo Web Full Stack</h4>
-                    <p>HTML, CSS, JavaScript, React, Node.js y más</p>
+                    <p>HTML, CSS, JavaScript, React, Node.js, bases de datos y despliegue. Conviértete en desarrollador completo.</p>
+                    <div class="course-meta">
+                        <span><i class="bi bi-clock"></i> 12 semanas</span>
+                        <span><i class="bi bi-play-circle"></i> 48 clases</span>
+                    </div>
                 </div>
-                <div class="course-item">
+                <div class="course-card reveal">
+                    <span class="course-level beginner">Principiante</span>
+                    <span class="course-icon">📱</span>
                     <h4>Marketing Digital</h4>
-                    <p>SEO, SEM, Redes Sociales, Email Marketing</p>
+                    <p>SEO, SEM, redes sociales, email marketing y analytics. Domina las estrategias digitales.</p>
+                    <div class="course-meta">
+                        <span><i class="bi bi-clock"></i> 8 semanas</span>
+                        <span><i class="bi bi-play-circle"></i> 32 clases</span>
+                    </div>
                 </div>
-                <div class="course-item">
+                <div class="course-card reveal">
+                    <span class="course-level intermediate">Intermedio</span>
+                    <span class="course-icon">🤖</span>
                     <h4>Data Science & IA</h4>
-                    <p>Python, Machine Learning, Deep Learning</p>
+                    <p>Python, Machine Learning, Deep Learning, análisis de datos y visualización con proyectos reales.</p>
+                    <div class="course-meta">
+                        <span><i class="bi bi-clock"></i> 16 semanas</span>
+                        <span><i class="bi bi-play-circle"></i> 64 clases</span>
+                    </div>
                 </div>
-                <div class="course-item">
+                <div class="course-card reveal">
+                    <span class="course-level intermediate">Intermedio</span>
+                    <span class="course-icon">🎨</span>
                     <h4>Diseño UX/UI</h4>
-                    <p>Figma, Prototipado, Investigación de usuarios</p>
+                    <p>Figma, prototipado, investigación de usuarios, arquitectura de información y design systems.</p>
+                    <div class="course-meta">
+                        <span><i class="bi bi-clock"></i> 10 semanas</span>
+                        <span><i class="bi bi-play-circle"></i> 40 clases</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="cta">
+    <!-- ═══ PRICING ═══ -->
+    <section class="section" id="precios">
         <div class="container">
-            <h2>Comienza tu viaje hoy</h2>
-            <p>Únete a miles de estudiantes que ya están transformando su carrera profesional</p>
-            <a id="academy-link-cta" href="https://parker-names-debate-give.trycloudflare.com" class="btn-academy">
-                🚀 Ir a la Academia
-            </a>
+            <div class="section-header reveal">
+                <span class="section-tag">Inversión</span>
+                <h2>Planes para cada meta</h2>
+                <p>Elige el plan que mejor se adapte a tu ritmo de aprendizaje y presupuesto.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card reveal">
+                    <h3>Básico</h3>
+                    <p class="pricing-desc">Acceso a cursos gratuitos y comunidad</p>
+                    <div class="pricing-amount">$0 <span>/mes</span></div>
+                    <p class="pricing-period">Siempre gratis</p>
+                    <ul class="pricing-features">
+                        <li>5 cursos gratuitos</li>
+                        <li>Foros de comunidad</li>
+                        <li>Certificado básico</li>
+                        <li>Acceso móvil</li>
+                    </ul>
+                    <a href="#academia" class="pricing-btn outline">Comenzar Gratis</a>
+                </div>
+                <div class="pricing-card popular reveal">
+                    <span class="pricing-badge">Más popular</span>
+                    <h3>Pro</h3>
+                    <p class="pricing-desc">Acceso completo a todos los cursos</p>
+                    <div class="pricing-amount">$19 <span>/mes</span></div>
+                    <p class="pricing-period">Facturación mensual</p>
+                    <ul class="pricing-features">
+                        <li>Todos los cursos</li>
+                        <li>Proyectos prácticos</li>
+                        <li>Certificados profesionales</li>
+                        <li>Mentoría en grupo</li>
+                        <li>Sin publicidad</li>
+                    </ul>
+                    <a href="#academia" class="pricing-btn primary">Empezar Pro</a>
+                </div>
+                <div class="pricing-card reveal">
+                    <h3>Premium</h3>
+                    <p class="pricing-desc">Experiencia completa con mentoría personal</p>
+                    <div class="pricing-amount">$39 <span>/mes</span></div>
+                    <p class="pricing-period">Facturación mensual</p>
+                    <ul class="pricing-features">
+                        <li>Todo lo de Pro</li>
+                        <li>Mentoría 1:1 semanal</li>
+                        <li>Proyectos personalizados</li>
+                        <li>Prioridad en soporte</li>
+                        <li>Acceso anticipado</li>
+                        <li>Eventos exclusivos</li>
+                    </ul>
+                    <a href="#academia" class="pricing-btn outline">Ir a Premium</a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer>
+    <!-- ═══ TESTIMONIALS ═══ -->
+    <section class="section testimonials" id="testimonios">
         <div class="container">
-            <p>&copy; 2026 Cursos Globales. Todos los derechos reservados.</p>
+            <div class="section-header reveal">
+                <span class="section-tag">Testimonios</span>
+                <h2>Lo que dicen nuestros estudiantes</h2>
+                <p>Miles de estudiantes ya transformaron su carrera con nosotros.</p>
+            </div>
+            <div class="testimonial-carousel reveal" id="testimonialCarousel">
+                <div class="testimonial-slide active">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Gracias a Cursos Globales pude cambiar de carrera en solo 6 meses. Los instructores son excelentes y el contenido está muy bien estructurado. Recomendado 100%."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MR</div>
+                        <div class="testimonial-info">
+                            <h4>María Rodríguez</h4>
+                            <span>Desarrolladora Full Stack</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"La flexibilidad de horarios me permitió estudiar mientras trabajaba. Los proyectos prácticos fueron clave para aplicar lo aprendido. ¡Ya conseguí mi primer empleo en tech!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">CG</div>
+                        <div class="testimonial-info">
+                            <h4>Carlos Gómez</h4>
+                            <span>Analista de Datos</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Tomé el curso de Marketing Digital y en menos de 3 meses ya estaba aplicando las estrategias en mi propio emprendimiento. Resultados reales y medibles."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">AL</div>
+                        <div class="testimonial-info">
+                            <h4>Ana Lucía Pérez</h4>
+                            <span>Emprendedora Digital</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-dot active" data-index="0"></button>
+                    <button class="carousel-dot" data-index="1"></button>
+                    <button class="carousel-dot" data-index="2"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ TEAM ═══ -->
+    <section class="section" id="equipo">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Nuestro equipo</span>
+                <h2>Conoce a tus instructores</h2>
+                <p>Profesionales apasionados por la enseñanza y con amplia experiencia en la industria.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card reveal">
+                    <div class="team-avatar">JM</div>
+                    <h4>Juan Martínez</h4>
+                    <p class="team-role">Desarrollo Web</p>
+                    <p>10+ años como desarrollador. Ex-Google, especialista en React y Node.js.</p>
+                </div>
+                <div class="team-card reveal">
+                    <div class="team-avatar">PL</div>
+                    <h4>Paula López</h4>
+                    <p class="team-role">Data Science</p>
+                    <p>PhD en IA. Investigadora y consultora en machine learning para empresas Fortune 500.</p>
+                </div>
+                <div class="team-card reveal">
+                    <div class="team-avatar">DR</div>
+                    <h4>Diego Ramírez</h4>
+                    <p class="team-role">Marketing Digital</p>
+                    <p>CEO de agencia digital. Ha generado más de $10M en ventas con estrategias digitales.</p>
+                </div>
+                <div class="team-card reveal">
+                    <div class="team-avatar">SV</div>
+                    <h4>Sofía Vargas</h4>
+                    <p class="team-role">Diseño UX/UI</p>
+                    <p>Diseñadora senior en Figma. Premio Design Awards 2025. Especialista en design systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FAQ ═══ -->
+    <section class="section" id="faq">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">FAQ</span>
+                <h2>Preguntas Frecuentes</h2>
+                <p>Resolvemos tus dudas para que empieces sin preocupaciones.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        ¿Cómo funcionan los cursos?
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Los cursos son 100% online con clases grabadas y sesiones en vivo. Accedes desde cualquier dispositivo, avanzas a tu ritmo y tienes soporte de instructores y comunidad.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        ¿Recibo un certificado al finalizar?
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, al completar cada curso recibes un certificado digital avalado por Cursos Globales. Los certificados incluyen verificación online y pueden compartirse en LinkedIn.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        ¿Puedo cancelar mi suscripción?
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, puedes cancelar en cualquier momento sin penalización. Si cancelas, seguirás teniendo acceso hasta el final del período facturado.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        ¿Hay requisitos previos para los cursos?
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Cada curso indica su nivel (principiante, intermedio, avanzado). Los cursos para principiantes no requieren experiencia previa. Recomendamos revisar los requisitos de cada curso antes de inscribirte.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        ¿Ofrecen descuentos para estudiantes?
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, tenemos descuentos especiales para estudiantes y planes corporativos. Contáctanos a través de la plataforma para más información sobre nuestras promociones vigentes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ BLOG ═══ -->
+    <section class="section" id="blog">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Blog</span>
+                <h2>Artículos y Novedades</h2>
+                <p>Tips, guías y las últimas tendencias en educación digital y tecnología.</p>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-card reveal">
+                    <div class="blog-image">📝</div>
+                    <div class="blog-body">
+                        <div class="blog-date">15 Mayo 2026</div>
+                        <h4>10 Habilidades Digitales Más Demandadas en 2026</h4>
+                        <p>Descubre qué competencias están buscando las empresas y cómo puedes desarrollarlas desde cero.</p>
+                        <a href="#academia" class="blog-link" target="_blank" rel="noopener noreferrer">
+                            Leer más <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+                <article class="blog-card reveal">
+                    <div class="blog-image">💡</div>
+                    <div class="blog-body">
+                        <div class="blog-date">2 Mayo 2026</div>
+                        <h4>Cómo Crear un Portafolio que Consiga Trabajo</h4>
+                        <p>Guía paso a paso para construir un portafolio profesional que destaque ante reclutadores.</p>
+                        <a href="#academia" class="blog-link" target="_blank" rel="noopener noreferrer">
+                            Leer más <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+                <article class="blog-card reveal">
+                    <div class="blog-image">🚀</div>
+                    <div class="blog-body">
+                        <div class="blog-date">20 Abril 2026</div>
+                        <h4>IA en la Educación: El Futuro del Aprendizaje</h4>
+                        <p>Exploramos cómo la inteligencia artificial está transformando la forma en que aprendemos y enseñamos.</p>
+                        <a href="#academia" class="blog-link" target="_blank" rel="noopener noreferrer">
+                            Leer más <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <div class="container" id="academia">
+        <section class="cta reveal-scale">
+            <h2>Comienza tu viaje hoy</h2>
+            <p>Únete a miles de estudiantes que ya están transformando su futuro profesional.</p>
+            <a id="academy-link-cta" href="REEMPLAZAR_URL" target="_blank" rel="noopener noreferrer" class="btn-academy primary">
+                🚀 Ir a la Academia ahora
+            </a>
+        </section>
+    </div>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="logo">Cursos Globales</span>
+                    <p>Transformando vidas a través de la educación digital. Aprende desde cualquier lugar, a tu ritmo, con los mejores.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h5>Plataforma</h5>
+                    <a href="#cursos">Cursos</a>
+                    <a href="#precios">Planes</a>
+                    <a href="#testimonios">Testimonios</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Recursos</h5>
+                    <a href="#blog">Blog</a>
+                    <a href="#">Guías Gratuitas</a>
+                    <a href="#">Webinars</a>
+                    <a href="#">Comunidad</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Empresa</h5>
+                    <a href="#equipo">Equipo</a>
+                    <a href="#">Contacto</a>
+                    <a href="#">Términos</a>
+                    <a href="#">Privacidad</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Cursos Globales. Todos los derechos reservados.</p>
+                <p>Hecho con <i class="bi bi-heart-fill" style="color: #ef4444;"></i> para la educación</p>
+            </div>
         </div>
     </footer>
+
+    <!-- ═══ SCRIPTS ═══ -->
+    <script>
+        // ─── Navbar scroll effect ───
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const current = window.scrollY;
+            if (current > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            lastScroll = current;
+        });
+
+        // ─── Mobile menu ───
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('bi-list');
+            icon.classList.toggle('bi-x-lg');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.add('bi-list');
+                icon.classList.remove('bi-x-lg');
+            });
+        });
+
+        // ─── Scroll Reveal with Intersection Observer ───
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -60px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ─── Counter Animation ───
+        const counters = document.querySelectorAll('.stat-number');
+        let countersStarted = false;
+
+        function animateCounters() {
+            counters.forEach(counter => {
+                const target = parseInt(counter.dataset.count);
+                const suffix = counter.dataset.count === '95' ? '%' : '';
+                let current = 0;
+                const increment = Math.ceil(target / 40);
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = target + suffix;
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = current;
+                    }
+                }, 30);
+            });
+        }
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !countersStarted) {
+                    countersStarted = true;
+                    animateCounters();
+                }
+            });
+        }, { threshold: 0.3 });
+
+        if (document.querySelector('.stats')) {
+            statsObserver.observe(document.querySelector('.stats'));
+        }
+
+        // ─── Testimonial Carousel ───
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        function showSlide(index) {
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                showSlide(parseInt(dot.dataset.index));
+            });
+        });
+
+        let autoSlide = setInterval(() => {
+            const next = (currentSlide + 1) % slides.length;
+            showSlide(next);
+        }, 5000);
+
+        document.getElementById('testimonialCarousel').addEventListener('mouseenter', () => {
+            clearInterval(autoSlide);
+        });
+
+        document.getElementById('testimonialCarousel').addEventListener('mouseleave', () => {
+            autoSlide = setInterval(() => {
+                const next = (currentSlide + 1) % slides.length;
+                showSlide(next);
+            }, 5000);
+        });
+
+        // ─── FAQ Accordion ───
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const isOpen = item.classList.contains('open');
+
+                document.querySelectorAll('.faq-item.open').forEach(openItem => {
+                    openItem.classList.remove('open');
+                });
+
+                if (!isOpen) {
+                    item.classList.add('open');
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
