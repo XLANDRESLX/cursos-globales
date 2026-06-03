@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos Globales - Academia Digital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header / Hero */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #b8b8d4;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .btn-academy {
+            display: inline-block;
+            padding: 18px 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-academy:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-academy i {
+            margin-right: 10px;
+        }
+
+        /* Features */
+        .features {
+            padding: 80px 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #b8b8d4;
+            font-size: 0.95rem;
+        }
+
+        /* Courses section */
+        .courses {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 30px;
+            margin: 0 20px;
+        }
+
+        .courses h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .courses > p {
+            text-align: center;
+            color: #b8b8d4;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        .course-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 0 20px;
+        }
+
+        .course-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: border-color 0.3s;
+        }
+
+        .course-item:hover {
+            border-color: rgba(102, 126, 234, 0.4);
+        }
+
+        .course-item h4 {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .course-item p {
+            color: #b8b8d4;
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            color: #b8b8d4;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            color: #6c6c8a;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero {
+                padding: 80px 0 60px;
+            }
+
+            .btn-academy {
+                padding: 15px 35px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <h1>Cursos Globales</h1>
+            <p>Transforma tu futuro con nuestros cursos digitales. Aprende desde cualquier lugar, a tu ritmo, con profesionales de clase mundial.</p>
+            <a id="academy-link" href="REEMPLAZAR_URL" class="btn-academy">
+                🚀 Ir a la Academia
+            </a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2>¿Por qué elegirnos?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">📚</span>
+                    <h3>Aprendizaje Flexible</h3>
+                    <p>Accede a los cursos 24/7 desde cualquier dispositivo. Estudia a tu propio ritmo sin horarios fijos.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">👨‍🏫</span>
+                    <h3>Instructores Expertos</h3>
+                    <p>Aprende de profesionales con años de experiencia en la industria. Contenido actualizado y relevante.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎓</span>
+                    <h3>Certificación Digital</h3>
+                    <p>Obtén certificados al completar tus cursos. Respaldados por nuestra plataforma educativa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="courses">
+        <div class="container">
+            <h2>Cursos Destacados</h2>
+            <p>Explora nuestra oferta educativa y encuentra el curso perfecto para ti</p>
+            <div class="course-list">
+                <div class="course-item">
+                    <h4>Desarrollo Web Full Stack</h4>
+                    <p>HTML, CSS, JavaScript, React, Node.js y más</p>
+                </div>
+                <div class="course-item">
+                    <h4>Marketing Digital</h4>
+                    <p>SEO, SEM, Redes Sociales, Email Marketing</p>
+                </div>
+                <div class="course-item">
+                    <h4>Data Science & IA</h4>
+                    <p>Python, Machine Learning, Deep Learning</p>
+                </div>
+                <div class="course-item">
+                    <h4>Diseño UX/UI</h4>
+                    <p>Figma, Prototipado, Investigación de usuarios</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Comienza tu viaje hoy</h2>
+            <p>Únete a miles de estudiantes que ya están transformando su carrera profesional</p>
+            <a id="academy-link-cta" href="REEMPLAZAR_URL" class="btn-academy">
+                🚀 Ir a la Academia
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Cursos Globales. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
